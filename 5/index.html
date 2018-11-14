@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="./bitbug_favicon.ico" />
+    <title>高仿锤子官网首页图片交互效果</title>
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        background: #f3f3f3;
+      }
+      #box {
+        width: 100%;
+        height: 400px;
+        perspective: 1000px;
+        padding: 100px 0;
+      }
+      #picBox {
+        width: 800px;
+        height: 400px;
+        margin: 0 auto;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        transform: rotateX(0deg) rotateY(0deg);
+      }
+      img {
+        transition: all 0.3s linear;
+        transform: rotate(0deg);
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="picBox"><img src="./miku.png" alt="" srcset="" /></div>
+    </div>
+
+    <script>
+      const picBox = document.querySelector("#picBox");
+      picBox.addEventListener("mousemove", rotate, false);
+      picBox.addEventListener("mouseout", outBox, false);
+      const img = document.querySelector("img");
+      function rotate(e) {
+        var baseX = e.pageX - this.offsetWidth / 2 - this.offsetLeft,
+          baseY = e.pageY - this.offsetHeight / 2 - this.offsetTop;
+        console.log("rotateX(" + baseY / -40 + "deg) rotateY(" + baseX / 80 + "deg)");
+        img.style.transform =
+          "rotateX(" + baseY / -20 + "deg) rotateY(" + baseX / 80 + "deg)";
+      }
+      function outBox() {
+        img.style.transform = "rotateX(0deg) rotateY(0deg)";
+      }
+    </script>
+  </body>
+</html>
